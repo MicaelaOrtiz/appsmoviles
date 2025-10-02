@@ -23,7 +23,7 @@ export default function MovieCard({ movie, onPress }) {
 const styles = StyleSheet.create({
   card: { flexDirection: 'row', 
     marginBottom: 15, 
-    backgroundColor: '#f0f0f0', 
+    backgroundColor: '#333333', 
     borderRadius: 10, 
     overflow: 'hidden' },
   image: { width: 100, 
@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     padding: 10 },
   title: { fontSize: 18, 
     fontWeight: 'bold', 
-    marginBottom: 5 },
+    marginBottom: 5,
+    color: 'white' },
   overview: { fontSize: 14, 
-    color: '#555' },
+    color: '#ccc' },
 });

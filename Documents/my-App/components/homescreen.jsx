@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, FlatList, StyleSheet } from 'react-native';
-import MovieCard from './MovieCard';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import MovieCard from './moviecard';
 import { API_KEY } from '@env';
+import { LinearGradient } from 'expo-linear-gradient'; 
 
 const MOVIES = [597];
 
@@ -30,18 +31,26 @@ export default function HomeScreen({ navigation }) {
   fetchMovies();
 }, []);
 
+  const gradientColors = ['#202020', '#101010', '#000000']; 
 
   if (loading) {
-    return <ActivityIndicator 
-    size="large" 
-    style={{ flex: 1, 
-      justifyContent: 'center' }} />;
+    return (
+      <View style={styles.loadingContainer}> 
+        <ActivityIndicator 
+          size="large" 
+          color="#ffffff"
+        />
+      </View>
+    );
   }
 
   return (
-    <View 
-    style={styles.container}>
-
+    <LinearGradient
+      colors={gradientColors}
+      style={styles.container}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+    >
       <FlatList
         data={movies}
         keyExtractor={item => item.id.toString()}
@@ -52,11 +61,18 @@ export default function HomeScreen({ navigation }) {
           />
         )}
       />
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, 
-    padding: 10 },
+  container: { 
+    flex: 1, 
+    padding: 10 
+  },
+  loadingContainer: { 
+    flex: 1, 
+    justifyContent: 'center',
+    backgroundColor: '#000000'
+  }
 });
